@@ -1,8 +1,7 @@
 """Pricing API — microservicio de planes, precios y cálculos dinámicos."""
 from __future__ import annotations
 
-from fastapi import FastAPI, HTTPException, Query
-from pydantic import BaseModel, Field
+from fastapi import FastAPI, HTTPException
 
 from .models import Plan, PriceRequest, PriceResponse, HealthResponse
 from .pricing import calculate_price
