@@ -21,7 +21,7 @@ class Plan(BaseModel):
     id: str = Field(..., description="Identificador único del plan")
     name: str = Field(..., description="Nombre del plan (ej: Basic, Pro, Enterprise)")
     description: str = Field("", description="Descripción del plan")
-    base_price: Decimal = Field(..., gt=0, description="Precio base mensual")
+    base_price: Decimal = Field(..., ge=0, description="Precio base mensual")
     currency: Currency = Field(Currency.USD, description="Moneda del precio base")
     features: list[str] = Field(default_factory=list, description="Lista de features incluidas")
     max_users: Optional[int] = Field(None, ge=1, description="Máximo de usuarios (null = ilimitado)")
@@ -30,7 +30,7 @@ class Plan(BaseModel):
 
 class PriceRequest(BaseModel):
     """Solicitud de cálculo de precio."""
-    base_amount: Decimal = Field(..., gt=0, description="Monto base a calcular")
+    base_amount: Decimal = Field(..., ge=0, description="Monto base a calcular")
     currency: Currency = Field(Currency.USD, description="Moneda del monto base")
     markup_percent: Optional[Decimal] = Field(None, ge=0, le=1000, description="Markup % a aplicar")
     discount_percent: Optional[Decimal] = Field(None, ge=0, le=100, description="Descuento % a aplicar")
