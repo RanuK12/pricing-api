@@ -28,10 +28,23 @@ curl -X POST http://localhost:8000/calculate \
   -d '{"base_amount":99,"discount_percent":15,"quantity":12}'
 ```
 
+## Tests
+
+```bash
+pip install -r requirements.txt
+pytest tests/ -v
+```
+
+23 tests que cubren CRUD, cálculo de precios y casos borde.
+
 ## Deploy
 
 ```bash
+# Local
 docker compose up -d --build
+
+# A DigitalOcean (ver setup-droplet.sh)
+./deploy.sh <ip_del_droplet>
 ```
 
 La API queda en `http://localhost:8000`. Docs interactivos en `/docs`.
@@ -41,3 +54,4 @@ La API queda en `http://localhost:8000`. Docs interactivos en `/docs`.
 - Python 3.12 + FastAPI
 - Pydantic v2 (validación)
 - Docker + docker-compose
+- pytest + httpx (tests)
